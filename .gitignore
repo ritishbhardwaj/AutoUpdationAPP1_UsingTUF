@@ -1,0 +1,12 @@
+temp_my_app/
+temp_demoApp1/
+
+rought.py
+
+
+*.pyc
+__pycache__/
+
+
+build/
+dist/
