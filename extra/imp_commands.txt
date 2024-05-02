@@ -1,0 +1,4 @@
+pyinstaller --onefile --add-data "UpdationService/PyLeap_Repo/repository/metadata/root.json:metadata"  demoApp1.py
+
+
+python -m http.server --bind 192.168.105.183  --directory temp_my_app/repository 8000
