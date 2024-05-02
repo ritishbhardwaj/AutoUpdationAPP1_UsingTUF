@@ -78,8 +78,11 @@ def main():
     # Check if root.json file was created successfully
     else:
         # install_dir = str(DEV_DIR / 'demoApp1')
-        install_dir = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        # install_dir = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
         # install_dir = os.path.join(desktop_dir, 'demoApp1')
+        script_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
+        print("Script directory:", script_dir)
+        install_dir= os.path.abspath(os.path.dirname(sys.argv[0]))
         meta_dir =str(MODULE_DIR/'metadata')
         targets_dir = str(DEV_DIR/'repository/targets')
         updateHandler(install_dir,meta_dir,targets_dir)
