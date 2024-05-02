@@ -1,4 +1,3 @@
-'''NOT USING IT RIGHT NOW WILL FIGURE IT OUT IN FUTURE'''
 
 import logging
 import sys
@@ -47,7 +46,7 @@ if __name__ == '__main__':
         new_bundle_dir=bundle_dir,
         new_version=AppUpdations.__version__,
         # [optional] custom metadata can be any dict (default is None)
-        custom_metadata={'changes': ['new feature 12:21 o clock  added on 15/4/2024', 'bug version naming fixed']},
+        custom_metadata={'changes': ['new feature 11:06 o clock  added on 16/4/2024', 'bug version naming fixed']},
     )
     print("OK JI")
     repo.publish_changes(private_key_dirs=[KEYS_DIR])

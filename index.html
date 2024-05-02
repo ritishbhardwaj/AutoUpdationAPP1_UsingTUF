@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML2WebView Example</title>
+    <script>
+        function onStartClick() {
+            console.log("Start button clicked");
+            // Send message to Python code
+            // wx.wxPostMessage('start_clicked', '');
+            document.wx_msg.postMessage('Start clicked');
+        }
+
+        function onChoiceChange() {
+            var selection = document.getElementById("myChoiceBox").value;
+            console.log("Choice box selection: " + selection);
+            // Send message to Python code
+            // wx.wxPostMessage('choice_changed', selection);
+            document.wx_msg.postMessage('Choice changed:',selecton);
+        }
+    </script>
+</head>
+<body>
+    <h1>HTML2WebView Example</h1>
+    <button onclick="onStartClick()">Start</button>
+    <select id="myChoiceBox" onchange="onChoiceChange()">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+</body>
+</html>
+

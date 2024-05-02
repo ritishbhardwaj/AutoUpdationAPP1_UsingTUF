@@ -1,9 +1,9 @@
-__version__ = '7.0.0'
+__version__ = '13.0.0'
 
 import tuf
 import tufup
 from typing import Dict, List, Tuple
-from tufup.utils.platform_specific import ON_MAC, ON_WINDOWS
+from tufup.utils.platform_specific import  ON_WINDOWS
 import tufup.client
 import pathlib,sys
 import os
@@ -33,8 +33,8 @@ def progress_hook(bytes_downloaded: int, bytes_expected: int):
 
 
 def updateHandler(install_dir:str,meta_dir:str,target_dir:str):
-    client = tufup.client.Client(APP_NAME, install_dir, #it is app install directory
-                                 __version__, meta_dir, #this is meta directory
+    client = tufup.client.Client(APP_NAME, install_dir, #it is app install directory on client machine 
+                                 __version__, meta_dir, #this is meta directory   on client machine 
                                  METADATA_BASE_URL,
                                  target_dir , TARGET_BASE_URL)
 
@@ -89,4 +89,7 @@ if __name__ == "__main__":
     print("--------=-=-====================")
     print(DEV_DIR)
     main()
+
+
+
 

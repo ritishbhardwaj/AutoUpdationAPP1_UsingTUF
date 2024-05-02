@@ -20,6 +20,8 @@ class MyFrame(wx.Frame):
         btn_downloading = wx.Button(panel, label="Download new version", pos=(50, 20))
         btn_downloading.Bind(wx.EVT_BUTTON, self.on_button_click_dwnld)
 
+        label  = wx.StaticText(panel,label= f"version is {__version__}",pos = (35,43))
+
     def on_button_click(self, event):
         update_url = 'http://127.0.0.1:5000/latest_version'
         response = urllib.request.urlopen(update_url)
@@ -27,27 +29,20 @@ class MyFrame(wx.Frame):
         print(response.read().decode('utf-8'))
         wx.MessageBox( f'{dt}','Info', wx.OK | wx.ICON_INFORMATION)
 
-    def on_button_click_dwnld(self,event):
-        print("download Operations")
-        import AppUpdations as app
-        app.main()
-        # print(FROZEN)
-        # temp_dir = tempfile.mkdtemp()
-        # local_exe_path = os.path.join(temp_dir, 'testingLocalPath.exe')
-        # print(local_exe_path)
-        # url="http://127.0.0.1:5000/download"
-        # response = urllib.request.urlopen(url)
-        # print(dir(response))
+    def on_button_click_dwnld(self, event):
+        # Ask user for confirmation
+        dlg = wx.MessageDialog(self, "Do you want to download and install the new version?", "Confirmation", wx.YES_NO | wx.ICON_QUESTION)
+        result = dlg.ShowModal()
+        dlg.Destroy()
 
-        # # Check if the request was successful (status code 200)
-        # if response:
-        #     # Save the downloaded file to the local path
-        #     with open(local_exe_path, 'wb') as f:
-        #         f.write(response.read())
-        #     print('Executable file downloaded successfully')
-        # else:
-        #     print('Failed to download the executable file')
-
+        if result == wx.ID_YES:
+            print("Download and install operations")
+            import AppUpdations as app
+            # Function calling to the Client
+            app.main()
+        else:
+            print("Download canceled by user")
+        
 
 class MyApp(wx.App):
     def OnInit(self):
