@@ -1,4 +1,4 @@
-__version__ = '13.0.0'
+__version__ = '9.0.0'
 
 import tuf
 import tufup
@@ -21,13 +21,13 @@ FROZEN = getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS')
 DEV_DIR = MODULE_DIR / f'temp_{APP_NAME}'
 print("DEV_DIR    :->", DEV_DIR,type(DEV_DIR))
 
-METADATA_BASE_URL = 'http://127.0.0.1:8000/metadata/'
-TARGET_BASE_URL = 'http://127.0.0.1:8000/targets/'
+METADATA_BASE_URL = 'http://127.0.0.1:5000/metadata/'
+TARGET_BASE_URL = 'http://127.0.0.1:5000/targets/'
 
 def progress_hook(bytes_downloaded: int, bytes_expected: int):
     progress_percent = bytes_downloaded / bytes_expected * 100
     print(f'\r{progress_percent:.1f}%', end='')
-    time.sleep(0.2)  # quick and dirty: simulate slow or large download
+    # time.sleep(0.2)  # quick and dirty: simulate slow or large download
     if progress_percent >= 100:
         print('')
 
@@ -51,7 +51,7 @@ def updateHandler(install_dir:str,meta_dir:str,target_dir:str):
             for item in any_update.custom.get('changes', []):
                 print(f'\t- {item}')
 
-        client.download_and_apply_update()
+        client.download_and_apply_update(progress_hook=progress_hook,skip_confirmation=True)
         print("Downloading......")
 
 
