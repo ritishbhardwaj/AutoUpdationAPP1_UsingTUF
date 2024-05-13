@@ -1,6 +1,6 @@
 {
     "app_name": "demoApp1",
-    "app_version_attr": "VERSION",
+    "app_version_attr": "AppUpdations.__version__",
     "encrypted_keys": [],
     "expiration_days": {
         "root": 365,

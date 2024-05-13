@@ -1,12 +1,17 @@
 
 import logging
-import sys
+import sys,os
 
 from tufup.repo import Repository
 from repo_settings import DIST_DIR,KEYS_DIR
 import pathlib
 
-import AppUpdations
+# import AppUpdations
+
+from dotenv import load_dotenv
+load_dotenv(override=True)
+VERSION = os.environ.get('CURRENT_APP_VERSION')
+print("---------------->",VERSION)
 
 
 MODULE_DIR = pathlib.Path(__file__).resolve().parent
@@ -44,7 +49,7 @@ if __name__ == '__main__':
     # Add new app bundle to repository (automatically reads myapp.__version__)
     repo.add_bundle(
         new_bundle_dir=bundle_dir,
-        new_version=AppUpdations.__version__,
+        new_version=VERSION,
         # [optional] custom metadata can be any dict (default is None)
         custom_metadata={'changes': ['new feature 11:06 o clock  added on 16/4/2024', 'bug version naming fixed']},
     )

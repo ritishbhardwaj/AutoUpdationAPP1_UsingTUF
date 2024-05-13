@@ -1,4 +1,4 @@
-__version__ = '9.0.0'
+__version__ = '3.0.0'
 
 import tuf
 import tufup
@@ -6,7 +6,7 @@ from typing import Dict, List, Tuple
 from tufup.utils.platform_specific import  ON_WINDOWS
 import tufup.client
 import pathlib,sys
-import os
+import os,subprocess
 
 import json
 import time
@@ -51,7 +51,7 @@ def updateHandler(install_dir:str,meta_dir:str,target_dir:str):
             for item in any_update.custom.get('changes', []):
                 print(f'\t- {item}')
 
-        client.download_and_apply_update(progress_hook=progress_hook,skip_confirmation=True)
+        client.download_and_apply_update(progress_hook=progress_hook,skip_confirmation=True,process_creation_flags=subprocess.CREATE_NO_WINDOW)
         print("Downloading......")
 
 

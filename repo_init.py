@@ -1,6 +1,11 @@
 from tufup.repo import Repository
 import AppUpdations
 print(AppUpdations.__version__)
+import os
+from dotenv import load_dotenv
+load_dotenv(override=True)
+VERSION = os.environ.get('CURRENT_APP_VERSION')
+print("---------------->",VERSION)
 
 APP_NAME= 'demoApp1'
 
@@ -18,7 +23,7 @@ if __name__ == '__main__':
     # Create repository instance
     repo = Repository(
         app_name=APP_NAME,
-        app_version_attr="AppUpdations.__version__",
+        app_version_attr="VERSION",
         repo_dir=REPO_DIR,
         keys_dir=KEYS_DIR,
         key_map=KEY_MAP,
